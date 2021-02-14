@@ -29,6 +29,12 @@ public class SpringCloudBQClient {
 		return fetchUsers(queryConfig);
 	}
 
+	public ResponseEntity<User> getUserByEmail(String emailId) {
+		final String fetchUsersByEmail = String.format(QueryConstants.FETCH_USER_BY_EMAIL, emailId);
+		QueryJobConfiguration queryConfig = QueryJobConfiguration.newBuilder(fetchUsersByEmail).build();
+		return ResponseEntity.ok(fetchUsers(queryConfig).getBody().get(0));
+	}
+
 	private ResponseEntity<List<User>> fetchUsers(QueryJobConfiguration queryConfig) {
 		User user = null;
 		List<User> userList = null;
@@ -63,5 +69,6 @@ public class SpringCloudBQClient {
 
 	static class QueryConstants {
 		static final String FETCH_USERS_QUERY = "SELECT * FROM User.User";
+		static final String FETCH_USER_BY_EMAIL = "SELECT * FROM User.User where email = \'%s\'";
 	}
 }

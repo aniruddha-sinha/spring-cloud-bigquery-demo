@@ -18,4 +18,8 @@ public class UserServiceBQ {
 	public ResponseEntity<List<User>> getListOfUsers() {
 		return client.getListOfUsers();
 	}
+	
+	public ResponseEntity<User> getUserDetailsByEmailId(String email) {
+		return client.getUserByEmail(email);
+	}
 }

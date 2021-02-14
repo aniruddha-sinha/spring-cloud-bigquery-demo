@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,5 +30,11 @@ public class UserControllerBQ {
 	public ResponseEntity<List<User>> getListOfUsers() {
 		log.info("Entered User (BQ) Controller");
 		return userServiceBQ.getListOfUsers();
+	}
+	
+	@GetMapping("/users/{user_email}/")
+	@ApiOperation("Rest API to get the User detail by email ID from BigQuery")
+	public ResponseEntity<User> getUserDetailsByEmailId(@PathVariable("user_email") String email) {
+		return userServiceBQ.getUserDetailsByEmailId(email);
 	}
 }
