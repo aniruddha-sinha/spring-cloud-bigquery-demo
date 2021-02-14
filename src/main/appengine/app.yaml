@@ -11,7 +11,7 @@ automatic_scaling:
   target_cpu_utilization: 0.7
   min_instances: 1
   max_instances: 5
-service: default
+service: bquery
 
 vpc_access_connector:
   name: "projects/ripcord-enterprise/locations/us-central1/connectors/connect-to-sql"

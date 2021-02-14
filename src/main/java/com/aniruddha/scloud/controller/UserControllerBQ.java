@@ -11,24 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aniruddha.scloud.model.User;
-import com.aniruddha.scloud.service.UserService;
+import com.aniruddha.scloud.service.UserServiceBQ;
 
 import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/apis")
-public class UserController {
+public class UserControllerBQ {
 
 	@Autowired
-	private UserService userService;
+	private UserServiceBQ userServiceBQ;
 
-	private static Log log = LogFactory.getLog(UserController.class);
+	private Log log = LogFactory.getLog(UserControllerBQ.class);
 	
 	@GetMapping("/users/list")
-	@ApiOperation("Rest API to fetch the list of Users")
-	public ResponseEntity<List<User>> getUserDetails() {
-		log.info("Entered User Controller");
-		
-		return userService.getUserDetails();
+	@ApiOperation("Rest API to get the list of Users from BigQuery")
+	public ResponseEntity<List<User>> getListOfUsers() {
+		log.info("Entered User (BQ) Controller");
+		return userServiceBQ.getListOfUsers();
 	}
 }

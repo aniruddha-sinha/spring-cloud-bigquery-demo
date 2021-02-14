@@ -13,11 +13,6 @@ public class User {
 	private Boolean isEmailValid;
 	private Boolean isMobileValid;
 	private String userStatus;
-	private Boolean deleted;
-	private String creationTimestamp;
-	private Integer createdBy;
-	private String modifiedTimestamp;
-	private Integer modifiedBy;
 
 	public Integer getUserId() {
 		return userId;
@@ -82,45 +77,4 @@ public class User {
 	public void setUserStatus(String userStatus) {
 		this.userStatus = userStatus;
 	}
-
-	public Boolean isDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(Boolean isDeleted) {
-		this.deleted = isDeleted;
-	}
-
-	public String getCreationTimestamp() {
-		return creationTimestamp;
-	}
-
-	public void setCreationTimestamp(String creationTimestamp) {
-		this.creationTimestamp = creationTimestamp;
-	}
-
-	public Integer getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(Integer createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public String getModifiedTimestamp() {
-		return modifiedTimestamp;
-	}
-
-	public void setModifiedTimestamp(String modifiedTimestamp) {
-		this.modifiedTimestamp = modifiedTimestamp;
-	}
-
-	public Integer getModifiedBy() {
-		return modifiedBy;
-	}
-
-	public void setModifiedBy(Integer modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
-
 }

@@ -28,9 +28,9 @@ public class SwaggerConfig {
 	}
 	
 	private ApiInfo metaInfo() {
-		final String title = "Spring Cloud Demo APIs";
-		final String description = "Demonstration of Spring Cloud GCP features";
-		final String version = "0.0.1-SNAPSHOT";
+		final String title = "Spring Cloud BigQuery Demo APIs";
+		final String description = "Demonstration of Spring Cloud GCP features: Google BigQuery";
+		final String version = "1.0.0-SNAPSHOT";
         @SuppressWarnings("deprecation")
 		ApiInfo apiInfo = new ApiInfo(title, description, version, null, null, null, null);
         return apiInfo;

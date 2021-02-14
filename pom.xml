@@ -3,10 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<groupId>com.aniruddha</groupId>
-	<artifactId>spring-cloud-demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-cloud-demo</name>
-	<description>Demo project for Spring Cloud</description>
+	<artifactId>spring-cloud-bigquery-demo</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>spring-cloud-bigquery-demo</name>
+	<description>Demo project for Spring Cloud BigQuery</description>
 
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -18,7 +18,7 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<spring-cloud-gcp-version>1.2.6.RELEASE</spring-cloud-gcp-version>
+		<spring-cloud-gcp-version>1.2.7.RELEASE</spring-cloud-gcp-version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -54,13 +54,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-gcp-starter-sql-mysql</artifactId>
-		</dependency>
+			<artifactId>spring-cloud-gcp-starter-bigquery</artifactId>
+			</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-gcp-starter-logging</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
