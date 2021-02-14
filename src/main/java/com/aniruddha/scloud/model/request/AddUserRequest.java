@@ -1,17 +1,23 @@
-package com.aniruddha.scloud.model;
+package com.aniruddha.scloud.model.request;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(Include.NON_NULL)
-public class User {
+public class AddUserRequest {
+	@JsonProperty("user-id")
 	private Integer userId;
+	@JsonProperty("user-name")
 	private String userName;
+	@JsonProperty("user-email")
 	private String email;
+	@JsonProperty("mobile-number")
 	private String mobileNumber;
+	@JsonProperty("fax-number")
 	private String faxNumber;
+	@JsonProperty("is-email-valid")
 	private Boolean isEmailValid;
+	@JsonProperty("is-mobile-valid")
 	private Boolean isMobileValid;
+	@JsonProperty("user-status")
 	private String userStatus;
 
 	public Integer getUserId() {

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aniruddha.scloud.model.User;
+import com.aniruddha.scloud.model.response.User;
 import com.aniruddha.scloud.service.UserServiceBQ;
 
 import io.swagger.annotations.ApiOperation;

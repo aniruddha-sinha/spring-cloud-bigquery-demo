@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.aniruddha.scloud.client.SpringCloudBQClient;
-import com.aniruddha.scloud.model.User;
+import com.aniruddha.scloud.model.response.User;
 
 @Service
 public class UserServiceBQ {
