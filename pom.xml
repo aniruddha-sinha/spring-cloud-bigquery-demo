@@ -91,7 +91,7 @@
 				<configuration>
 					<deploy.stopPreviousVersion>true</deploy.stopPreviousVersion>
 					<deploy.promote>true</deploy.promote>
-					<deploy.projectId>ripcord-enterprise</deploy.projectId>
+					<deploy.projectId>jester-foxtrot</deploy.projectId>
 					<deploy.version>2</deploy.version>
 				</configuration>
 			</plugin>

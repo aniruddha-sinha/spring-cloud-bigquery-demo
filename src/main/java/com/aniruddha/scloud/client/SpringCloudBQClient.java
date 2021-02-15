@@ -35,6 +35,8 @@ public class SpringCloudBQClient {
 	private Log log = LogFactory.getLog(SpringCloudBQClient.class);
 
 	public ResponseEntity<List<User>> getListOfUsers() {
+		log.info("query to be executed " + QueryConstants.FETCH_USERS_QUERY );
+		
 		QueryJobConfiguration queryConfig = QueryJobConfiguration.newBuilder(QueryConstants.FETCH_USERS_QUERY).build();
 		return fetchUsers(queryConfig);
 	}
@@ -48,6 +50,10 @@ public class SpringCloudBQClient {
 	public ResponseEntity<UserInsertResponse> addUser(AddUserRequest addUserRequest) {
 		UserInsertResponse insertResponse = null;
 		ResponseEntity<UserInsertResponse> userInsertFinalResponse = null;
+
+		log.info("Table Name " + Constants.TABLE_NAME);
+		log.info("Dataset Name " + Constants.DATASET_NAME);
+
 		Map<String, Object> rowContent = new HashMap<>();
 		rowContent.put("user_id", addUserRequest.getUserId());
 		rowContent.put("user_name", addUserRequest.getUserName());
@@ -75,7 +81,7 @@ public class SpringCloudBQClient {
 							"Error Inserting Row into" + Constants.TABLE_NAME + " " + entry.getValue());
 				}
 			}
-
+			log.info("The Insert Operation Did not encounter any error; Loading response");
 			// this place denotes that the insert was successful
 			insertResponse = new UserInsertResponse();
 			insertResponse.setEmail(addUserRequest.getEmail());
@@ -83,29 +89,47 @@ public class SpringCloudBQClient {
 			insertResponse.setRecordInsertionStatus("Successfully inserted 1 row into " + Constants.TABLE_NAME);
 		} catch (BigQueryException e) {
 			userInsertFinalResponse = ResponseEntity.badRequest().build();
+			log.error("Data Insertion Failed " + e.getMessage());
+		} catch (Exception exception) {
+			log.error("Data Insertion Failed " + exception.getMessage());
 		}
 		userInsertFinalResponse = ResponseEntity.ok(insertResponse);
 		return userInsertFinalResponse;
 	}
 
 	private ResponseEntity<List<User>> fetchUsers(QueryJobConfiguration queryConfig) {
+		log.info("Inside fetch Users method");
 		User user = null;
 		List<User> userList = null;
 		try {
 			userList = new ArrayList<>();
 			for (FieldValueList row : bigQuery.query(queryConfig).iterateAll()) {
+				
+				log.info("Instantiating User object");
 				user = new User();
-
+				log.info("Instantiated User Object");
+				
 				user.setUserId(Integer.valueOf(row.get("user_id").getStringValue()));
+				log.info("user Id SET");
 				user.setUserName(row.get("user_name").getStringValue());
+				log.info("user Name SET");
 				user.setEmail(row.get("email").getStringValue());
+				log.info("user EMAIL SET");
 				user.setMobileNumber(row.get("mobile_number").getStringValue());
+				log.info("user Mobile Number SET");
 				user.setFaxNumber(row.get("fax_number").getStringValue());
+				log.info("user Fax Number SET");
 				user.setIsEmailValid(row.get("is_email_valid").getBooleanValue());
+				log.info("is email valid SET");
 				user.setIsMobileValid(row.get("is_mobile_valid").getBooleanValue());
+				log.info("is mobile valid SET");
 				user.setUserStatus(row.get("user_status").getStringValue());
+				log.info("user status SET");
 				// add user to the list
+				
+				log.info("Adding user to the list id " + user.getUserId());
 				userList.add(user);
+				log.info("User Added to The list");
 			}
 
 		} catch (JobException | InterruptedException e) {
@@ -121,7 +145,7 @@ public class SpringCloudBQClient {
 	}
 
 	static class QueryConstants {
-		static final String FETCH_USERS_QUERY = "SELECT * FROM User.User";
-		static final String FETCH_USER_BY_EMAIL = "SELECT * FROM User.User where email = \'%s\'";
+		static final String FETCH_USERS_QUERY = "SELECT * FROM personal.Users";
+		static final String FETCH_USER_BY_EMAIL = "SELECT * FROM personal.Users where email = \'%s\'";
 	}
 }
